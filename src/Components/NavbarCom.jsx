@@ -308,7 +308,7 @@ const NavbarPage = () => {
             )}
           </Link>
 
-          <div
+          {/* <div
             className="hidden md:flex lg:flex cursor-pointer gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500"
             onClick={toggleTheme}
           >
@@ -347,7 +347,7 @@ const NavbarPage = () => {
                 </svg>
               </div>
             )}
-          </div>
+          </div> */}
           {!!user && (
             <div className="hidden md:flex lg:flex gap-2 font-semibold border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500 cursor-pointer">
               <a href="/account/places/new">Airbnb your home...</a>

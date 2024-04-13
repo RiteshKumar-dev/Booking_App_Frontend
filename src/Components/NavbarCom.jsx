@@ -350,7 +350,7 @@ const NavbarPage = () => {
           </div> */}
           {!!user && (
             <div className="hidden md:flex lg:flex gap-2 font-semibold border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500 cursor-pointer">
-              <a href="/account/places/new">Airbnb your home...</a>
+              <Link to={"/account/places/new"}>Airbnb your home...</Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

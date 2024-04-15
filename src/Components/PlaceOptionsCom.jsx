@@ -17,7 +17,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
   return (
     <>
       {isLoading && (
-        <div className="loader">
+        <div className="">
           <LoadingCom />
         </div>
       )}

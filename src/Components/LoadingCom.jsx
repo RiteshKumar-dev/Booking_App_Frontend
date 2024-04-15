@@ -30,7 +30,6 @@ const LoadingCom = () => {
           </button>
         </div>
       </div>
-      );
     </div>
   );
 };

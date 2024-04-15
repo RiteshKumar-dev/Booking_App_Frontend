@@ -11,11 +11,11 @@ const MapCom = ({ place }) => {
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://png.pngtree.com/png-vector/20210214/ourmid/pngtree-location-marker-png-image_2921053.jpg"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         <Marker position={[51.505, -0.09]}>
-          <Popup>{place[0]}</Popup>
+          <Popup>{place}</Popup>
         </Marker>
       </MapContainer>
     </div>

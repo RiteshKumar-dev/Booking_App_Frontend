@@ -1,10 +1,26 @@
 import React from "react";
 import ToggleSwitch from "./ToggleSwitchCom";
 import FilterCom from "./FilterCom";
+import LoadingCom from "./LoadingCom";
+import { toast } from "react-toastify";
 
 const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Changes Saved...");
+    }, 1000);
+  };
   return (
     <>
+      {isLoading && (
+        <div className="loader">
+          <LoadingCom />
+        </div>
+      )}
       <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:mt-5 lg:z-10 flex justify-around items-center lg:px-4 lg:py-2 md:px-4 md:py-2 bg-white lg:shadow-sm">
         <div className="lg:flex md:flex gap-5 overflow-hidden lg:mt-16">
           <div
@@ -15,7 +31,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
               sOverflowStyle: "none",
             }}
           >
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -40,7 +56,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
               </span>
             </div>
 
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -59,7 +75,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Design
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -78,7 +94,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Camping
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -97,7 +113,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Farms
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2 ">
+            <div className="inline-block mx-1 my-1 p-2 " onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -116,7 +132,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Beach
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2 ">
+            <div className="inline-block mx-1 my-1 p-2 " onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -135,7 +151,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 OMG!
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -154,7 +170,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Skiing
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -173,7 +189,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Arctic
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -192,7 +208,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Raids
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2">
+            <div className="inline-block mx-1 my-1 p-2" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -211,7 +227,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
                 Barns
               </span>
             </div>
-            <div className="inline-block mx-1 my-1 p-2 ">
+            <div className="inline-block mx-1 my-1 p-2 " onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

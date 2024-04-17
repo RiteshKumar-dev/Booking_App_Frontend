@@ -65,7 +65,12 @@ const NavbarPage = () => {
             to={"/"}
             className="flex items-center gap-2 text-red-500 text-semibold"
           >
-            <svg
+            <img
+              src="https://i.pinimg.com/originals/8c/94/0c/8c940ce7829947ca24e9979ec46b3f71.png"
+              alt="Airbnb Logo"
+              className="h-11 cover object-fit"
+            />
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -78,7 +83,7 @@ const NavbarPage = () => {
                 strokeLinejoin="round"
                 d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
               />
-            </svg>
+            </svg> */}
             <span className="font-bold text-3xl hidden lg:block">airbnb</span>
             {/* <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"

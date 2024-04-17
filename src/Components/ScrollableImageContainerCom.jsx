@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ScrollableImageContainerCom = ({ images }) => {
   return (
@@ -21,12 +22,12 @@ const ScrollableImageContainerCom = ({ images }) => {
         </svg>
       </h2>
       <div className="flex items-center justify-center mt-1">
-        <div className="border-b border-green-500 w-1/4"></div>
+        <div className="border-b border-gray-800 w-1/4"></div>
         {/* <div className="mx-3 text-gray-800">or</div> */}
-        <div className="border-b border-red-500 w-1/4"></div>
+        <div className="border-b border-gray-800 w-1/4"></div>
       </div>
       <div
-        className="flex overflow-x-scroll space-x-4 p-4 mt-3"
+        className="flex overflow-x-scroll space-x-4 p-4 mt-3 cursor-pointer"
         style={{
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
@@ -34,12 +35,21 @@ const ScrollableImageContainerCom = ({ images }) => {
         }}
       >
         {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Image ${index + 1}`}
-            className="h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200 ease-out"
-          />
+          <Link key={index} to={`/places/` + image.placeId}>
+            {image.url ? (
+              <div className="relative">
+                <img
+                  src={image.url}
+                  alt={`Image ${index + 1}`}
+                  className="h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200 ease-out"
+                  style={{ maxWidth: "300px" }} // Set max width here
+                />
+                <div className="absolute left-0 top-0 bg-white p-2 rounded-full text-sm font-bold mt-2 ml-2 shadow-md shadow-gray-500">
+                  Guest favourite
+                </div>
+              </div>
+            ) : null}
+          </Link>
         ))}
       </div>
     </>
@@ -47,3 +57,26 @@ const ScrollableImageContainerCom = ({ images }) => {
 };
 
 export default ScrollableImageContainerCom;
+{
+  /* <div
+  className="flex overflow-x-scroll space-x-4 p-4 mt-3 cursor-pointer"
+  style={{
+    WebkitOverflowScrolling: "touch",
+    scrollbarWidth: "none",
+    sOverflowStyle: "none",
+  }}
+>
+  {images.map((image, index) => (
+    <Link key={index} to={`/places/` + image.placeId}>
+      <div>
+        <img
+          src={image.url}
+          alt={`Image ${index + 1}`}
+          className="h-64 object-cover rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200 ease-out"
+        />
+        <button className="flex w-64"></button>
+      </div>
+    </Link>
+  ))}
+</div>; */
+}

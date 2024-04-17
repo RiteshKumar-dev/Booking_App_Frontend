@@ -117,22 +117,22 @@ const PlaceGalleryCom = ({ place }) => {
             />
           </div>
         )}
-        {place.photos?.[2] && (
+        {place.photos?.[3] && (
           <div className="bg-gray-500 rounded-2xl overflow-hidden aspect-square relative">
             <img
               onClick={() => setShowAllPhotos(true)}
               className="object-cover cursor-pointer w-full h-full transform hover:scale-105 transition-transform duration-300"
               src={
-                place.photos[2].includes("cloudinary")
-                  ? place.photos[2]
-                  : `${API}/uploads/` + place.photos[2]
+                place.photos[3].includes("cloudinary")
+                  ? place.photos[3]
+                  : `${API}/uploads/` + place.photos[3]
               }
               alt="Image"
             />
             <button
               onClick={() => setShowAllPhotos(true)}
               type="button"
-              className="hidden sm:flex text-white cursor-pointer flex gap-2 absolute bottom-2 right-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
+              className="hidden sm:flex text-white cursor-pointer flex gap-2 absolute bottom-2 right-2 bg-red-500 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
               style={{
                 bottom: "2rem",
                 right: "2rem",

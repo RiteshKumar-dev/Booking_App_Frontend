@@ -7,6 +7,8 @@ import AddressLinkCom from "./AddressLinkCom";
 import ReviewCom from "./ReviewCom";
 import MapCom from "./MapCom";
 import { useAuth } from "../Context/authContext";
+import LoadingCom from "./LoadingCom";
+import GoogleMapCom from "./GoogleMapCom";
 
 const UserPlaceCom = () => {
   const { id } = useParams();
@@ -36,36 +38,66 @@ const UserPlaceCom = () => {
   }, [id]);
 
   if (!place) {
-    return null; // Return null or a loading indicator until place data is fetched
+    return <LoadingCom />;
   }
 
   return (
     <div className="-mt-3 lg:mt-14 bg-gray-100 -mx-8 px-8 pt-8">
       <h1 className="text-3xl truncate">{place.title}</h1>
       <AddressLinkCom>{place.address}</AddressLinkCom>
+      <hr className="mb-2 border-t-2 border-gray-300" />
       <PlaceGalleryCom place={place} />
-      <div className="mb-8 mt-8 grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8">
+      <hr className=" mt-2 mb-2 border-t-2 border-gray-300" />
+      <div className="mb-8 mt-4 grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8">
         <div>
-          <div className="my-4">
+          <div className="">
             <h2 className="font-semibold mb-2 text-3xl underline">
-              About this space ...
+              About this space...
             </h2>
             {place.description}
           </div>
-          <hr className="mt-2 border-t-2 border-gray-300" />
+          <hr className="mt-2 mb-2 border-t-2 border-gray-300" />
           <div className="flex gap-2">
+            <p className="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </p>
             <p className="font-semibold mb-2 text-2xl underline">Check-In:</p>
             <p className="font-semibold mb-2 text-2xl"> {place.checkIn}:00am</p>
           </div>
           <div className="flex gap-2">
+            <p className="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </p>
             <p className="font-semibold mb-2 text-2xl underline"> Check-Out:</p>
             <p className="font-semibold mb-2 text-2xl">{place.checkOut}:00pm</p>
           </div>
           <div className="flex gap-2">
-            <p className="font-semibold mb-2 text-2xl underline">
-              Max number of guests:
-            </p>
-            <p className="font-semibold mb-2 text-2xl">{place.maxGuests}</p>
             <p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +105,7 @@ const UserPlaceCom = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-7 h-7"
+                className="w-8 h-8"
               >
                 <path
                   strokeLinecap="round"
@@ -82,6 +114,10 @@ const UserPlaceCom = () => {
                 />
               </svg>
             </p>
+            <p className="font-semibold mb-2 text-2xl underline">
+              Max number of guests:
+            </p>
+            <p className="font-semibold mb-2 text-2xl">{place.maxGuests}</p>
           </div>
         </div>
         <div>
@@ -97,9 +133,13 @@ const UserPlaceCom = () => {
         <div className="mb-4 mt-2 text-sm text-gray-700 leading-5 mt-2">
           {place.extraInfo}
         </div>
-        <MapCom place={place.address} />
+        <hr className=" mt-2 mb-2 border-t-2 border-gray-300" />
+        {/* <MapCom place={place.address} /> */}
+        <GoogleMapCom />
+        <hr className="mt-5 border-t-2 border-gray-300" />
       </div>
       <ReviewCom place={place} />
+      <hr className=" border-t-2 border-gray-300" />
     </div>
   );
 };

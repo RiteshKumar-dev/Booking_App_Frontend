@@ -153,7 +153,7 @@ const LoginCom = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
+              className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             >
               Login
             </button>
@@ -165,11 +165,11 @@ const LoginCom = () => {
           </div>
           <button
             type="button"
-            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded mt-2 flex justify-center"
+            className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
           >
-            Login with Google
-            <svg
+            Continue with Google
+            {/* <svg
               className="ml-2 w-6 h-6 text-white font-semibold"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -185,15 +185,20 @@ const LoginCom = () => {
                 strokeWidth="2"
                 d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
               />
-            </svg>
+            </svg> */}
+            <img
+              src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo-thumbnail.png"
+              className="w-6 h-6"
+              alt="Google_Img"
+            />
           </button>
           <button
             type="button"
-            className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded mt-2 flex justify-center"
+            className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
           >
-            Login with GitHub
-            <svg
+            Continue with GitHub
+            {/* <svg
               className="ml-2 w-6 h-6 text-white font-semibold"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +214,12 @@ const LoginCom = () => {
                 strokeWidth="2"
                 d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
               />
-            </svg>
+            </svg> */}
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              className="w-6 h-6"
+              alt="Githum_Img"
+            />
           </button>
           <p className="text-center mt-4">
             Don't have an account?

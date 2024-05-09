@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['react-google-login'],
+      external: ['../react-google-login'],
     },
   },
 });

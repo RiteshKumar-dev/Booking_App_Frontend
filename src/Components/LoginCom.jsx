@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import { toast } from "react-toastify";
-import { GoogleLogin } from "react-google-login";
-const clientId =
-  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
+// import { GoogleLogin } from "react-google-login";
+// const clientId =
+//   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const LoginCom = () => {
   const [redirect, setRedirect] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -207,7 +207,7 @@ const LoginCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          {/* <button
+          <button
             type="button"
             className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
@@ -218,8 +218,8 @@ const LoginCom = () => {
               className="w-7 h-7"
               alt="Google_Img"
             />
-          </button> */}
-          <GoogleLogin
+          </button>
+          {/* <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"
             onSuccess={handleSocialLoginSuccess}
@@ -262,8 +262,8 @@ const LoginCom = () => {
                 />
               </button>
             )}
-          />
-          {/* <button
+          /> */}
+          <button
             type="button"
             className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
@@ -274,7 +274,7 @@ const LoginCom = () => {
               className="w-6 h-6"
               alt="Githum_Img"
             />
-          </button> */}
+          </button>
           <p className="text-center mt-4">
             Don't have an account?
             <Link to={"/signup"} className="font-bold underline text-red-500">

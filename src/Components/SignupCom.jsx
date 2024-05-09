@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
-import { GoogleLogin } from "react-google-login";
-const clientId =
-  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
+// import { GoogleLogin } from "react-google-login";
+// const clientId =
+//   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const SignupCom = () => {
   const [user, setUser] = useState({
     username: "",
@@ -195,7 +195,7 @@ const SignupCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"
             onSuccess={handleSocialLoginSuccess}
@@ -216,7 +216,7 @@ const SignupCom = () => {
                 />
               </button>
             )}
-          />
+          /> */}
           <p className="text-center mt-4">
             Already have an account?
             <Link to={"/login"} className="font-bold underline text-red-500">

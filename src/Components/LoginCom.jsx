@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
+
 // import { GoogleLogin } from "react-google-login";
-// const clientId =
-//   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
+const clientId =
+  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const LoginCom = () => {
   const [redirect, setRedirect] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -100,8 +102,9 @@ const LoginCom = () => {
     toast.warning("Currently not working...");
   };
   const handleSocialLoginSuccess = async (response) => {
+    console.log(response);
     try {
-      const tokenId = response.tokenId;
+      const tokenId = response.credential;
       const responseBackend = await fetch(`${API}/api/auth/google`, {
         method: "POST",
         headers: {
@@ -207,7 +210,7 @@ const LoginCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          <button
+          {/* <button
             type="button"
             className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
@@ -218,8 +221,8 @@ const LoginCom = () => {
               className="w-7 h-7"
               alt="Google_Img"
             />
-          </button>
-          {/* <GoogleLogin
+          </button> */}
+          <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"
             onSuccess={handleSocialLoginSuccess}
@@ -241,7 +244,7 @@ const LoginCom = () => {
               </button>
             )}
           />
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId={clientId}
             buttonText=" Continue with GitHub"
             onSuccess={handleSocialLoginSuccess}
@@ -262,7 +265,8 @@ const LoginCom = () => {
                 />
               </button>
             )}
-          /> */}
+          />{" "}
+           */}
           <button
             type="button"
             className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"

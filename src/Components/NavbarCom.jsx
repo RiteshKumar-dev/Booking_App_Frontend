@@ -63,12 +63,12 @@ const NavbarPage = () => {
         <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:z-50 flex justify-around items-center px-4 py-2 md:px-8 md:py-4 bg-white lg:shadow-md mb-5 gap-2">
           <Link
             to={"/"}
-            className="flex items-center gap-2 text-red-500 text-semibold"
+            className="flex items-center text-red-500 text-semibold"
           >
             <img
-              src="https://i.pinimg.com/originals/8c/94/0c/8c940ce7829947ca24e9979ec46b3f71.png"
-              alt="Airbnb Logo"
-              className="h-11 cover object-fit"
+              src="https://pngimg.com/d/google_maps_pin_PNG76.png"
+              alt="Nav_Logo"
+              className="h-12 cover object-fit"
             />
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ const NavbarPage = () => {
                 d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
               />
             </svg> */}
-            <span className="font-bold text-3xl hidden lg:block">airbnb</span>
+            <span className="font-bold text-3xl hidden lg:block">Let's_Go</span>
             {/* <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"
               alt="Airbnb Logo"
@@ -169,7 +169,10 @@ const NavbarPage = () => {
                 <div className="w-7 h-7 bg-gray-300 overflow-hidden">
                   <img
                     className="object-cover w-full h-full"
-                    src="https://img.freepik.com/premium-photo/young-businessman-isolated-white_53419-207.jpg"
+                    src={
+                      user.profilePic ||
+                      "https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369991.png"
+                    }
                     alt="userImage"
                   />
                 </div>
@@ -217,7 +220,10 @@ const NavbarPage = () => {
                   <div className="w-7 h-7 bg-gray-300 overflow-hidden">
                     <img
                       className="object-cover w-full h-full"
-                      src="https://img.freepik.com/premium-photo/young-businessman-isolated-white_53419-207.jpg"
+                      src={
+                        user.profilePic ||
+                        "https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369991.png"
+                      }
                       alt="userImage"
                     />
                   </div>

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
-
+import { GoogleLogin } from "react-google-login";
+const clientId =
+  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const SignupCom = () => {
   const [user, setUser] = useState({
     username: "",
@@ -62,6 +64,44 @@ const SignupCom = () => {
       console.log("Registration error", error);
       toast.error("Registration failed...");
     }
+  };
+  const handleSocialLoginSuccess = async (response) => {
+    try {
+      const tokenId = response.tokenId;
+      const responseBackend = await fetch(`${API}/api/auth/google`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tokenId }),
+      });
+
+      if (responseBackend.ok) {
+        const userData = await responseBackend.json();
+        console.log("Signup form se :", userData.userData);
+        console.log("Signup form se :", userData.token);
+        toast.success("Registration successful...");
+        storeTokenInLS(userData.token);
+        const { _id, username, email, isAdmin, sub, profilePic } =
+          userData.userData;
+        storeUserDataInLS(
+          JSON.stringify({ _id, username, email, isAdmin, sub, profilePic })
+        );
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        navigate("/");
+      } else {
+        toast.error("Signup failed!...");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleSocialLoginFailure = (response) => {
+    console.error("Signup Error:", response);
   };
 
   return (
@@ -143,10 +183,40 @@ const SignupCom = () => {
             <button
               type="submit"
               className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
+              disabled={
+                !user.username || !user.email || !user.phone || !user.password
+              }
             >
               Register
             </button>
           </form>
+          <div className="flex items-center justify-center">
+            <div className="border-b border-gray-400 w-1/4"></div>
+            <div className="mx-3 text-gray-800">or</div>
+            <div className="border-b border-gray-400 w-1/4"></div>
+          </div>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Continue with Google"
+            onSuccess={handleSocialLoginSuccess}
+            onFailure={handleSocialLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            render={(renderProps) => (
+              <button
+                type="button"
+                className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Continue with Google
+                <img
+                  src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-google-logo-vector-png-image_12256710.png"
+                  className="w-7 h-7"
+                  alt="Google_Img"
+                />
+              </button>
+            )}
+          />
           <p className="text-center mt-4">
             Already have an account?
             <Link to={"/login"} className="font-bold underline text-red-500">

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
 
 const ReviewListCom = ({ reviews, onDelete }) => {
-  const { token, API } = useAuth();
+  const { token, API, user } = useAuth();
   const [reviewDeleted, setReviewDeleted] = useState(false);
 
   const handleDelete = async (id) => {
@@ -25,10 +25,10 @@ const ReviewListCom = ({ reviews, onDelete }) => {
       setTimeout(() => {
         setReviewDeleted(false);
         window.location.reload();
-        toast.success("Review deleted successfully🥰...");
+        toast.success("Review deleted successfully...");
       }, 1000);
     } catch (error) {
-      toast.error("You are not authorized to delete this review😔...");
+      toast.error("You are not authorized to delete this review...");
       console.error("Error deleting review:", error);
     }
   };
@@ -72,7 +72,10 @@ const ReviewListCom = ({ reviews, onDelete }) => {
                 <div className="w-10 h-10 bg-gray-300 rounded-full overflow-hidden mr-2">
                   <img
                     className="object-cover w-full h-full"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOAThX1-PzXi-U2MgsvbWm3KzM3avYeWewkg&usqp=CAU"
+                    src={
+                      user.ProfilePic ||
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOAThX1-PzXi-U2MgsvbWm3KzM3avYeWewkg&usqp=CAU"
+                    }
                     alt="userImage"
                   />
                 </div>

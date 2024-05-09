@@ -66,6 +66,19 @@ function ProfileCom() {
               <h2 className="text-xl text-center font-bold mb-4 underline">
                 User Profile...
               </h2>
+              <div className="flex justify-center overflow-hidden">
+                <div className="w-12 h-12 bg-gray-300 overflow-hidden rounded-full">
+                  <img
+                    className="object-cover w-full h-full"
+                    src={
+                      user.profilePic ||
+                      "https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369991.png"
+                    }
+                    alt="userImage"
+                  />
+                </div>
+              </div>
+              <hr className="mt-2 mb-2 border-t-2 border-gray-300" />
               <div className="flex items-center gap-2 font-semibold">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +131,9 @@ function ProfileCom() {
                   />
                 </svg>
 
-                <p className="text-gray-900 gap-2 mt-1">Phone: {user.phone}</p>
+                <p className="text-gray-900 gap-2 mt-1">
+                  {user.phone ? `Phone: ${user.phone}` : `UserId: ${user.sub}`}
+                </p>
               </div>
               <div className="flex items-center font-semibold gap-2">
                 <svg

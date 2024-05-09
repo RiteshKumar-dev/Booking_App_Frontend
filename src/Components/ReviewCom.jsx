@@ -41,14 +41,14 @@ const ReviewCom = ({ place }) => {
       );
 
       const data = response.data;
-      toast.success("Review Submitted🥰...");
+      toast.success("Review Submitted...");
       setReviews([...reviews, data]);
       setUserName("");
       setEmail("");
       setRating(0);
       setComment("");
     } catch (error) {
-      toast.error("Failed to submit review😔...");
+      toast.error("Failed to submit review...");
       console.error("Error submitting review:", error);
     }
   };

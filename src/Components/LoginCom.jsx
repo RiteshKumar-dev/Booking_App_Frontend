@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import { toast } from "react-toastify";
-
+import { GoogleLogin } from "react-google-login";
+const clientId =
+  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const LoginCom = () => {
   const [redirect, setRedirect] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -97,6 +99,47 @@ const LoginCom = () => {
   const handleSocialLogin = () => {
     toast.warning("Currently not working...");
   };
+  const handleSocialLoginSuccess = async (response) => {
+    try {
+      const tokenId = response.tokenId;
+      const responseBackend = await fetch(`${API}/api/auth/google`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tokenId }),
+      });
+
+      if (responseBackend.ok) {
+        const userData = await responseBackend.json();
+        console.log("Login form se :", userData.userData);
+        console.log("Login form se :", userData.token);
+        toast.success("Logged in successfully...");
+        storeTokenInLS(userData.token);
+        const { _id, username, email, isAdmin, sub, profilePic } =
+          userData.userData;
+        storeUserDataInLS(
+          JSON.stringify({ _id, username, email, isAdmin, sub, profilePic })
+        );
+        setRedirect(true);
+        setCredentials({
+          email: "",
+          password: "",
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      } else {
+        toast.error("Logged in failed!...");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleSocialLoginFailure = (response) => {
+    console.error("Login Error:", response);
+  };
 
   if (redirect) {
     return <Navigate to={"/"} />;
@@ -154,6 +197,7 @@ const LoginCom = () => {
             <button
               type="submit"
               className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
+              disabled={!credentials.email || !credentials.password}
             >
               Login
             </button>
@@ -163,64 +207,74 @@ const LoginCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          <button
+          {/* <button
             type="button"
             className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
           >
             Continue with Google
-            {/* <svg
-              className="ml-2 w-6 h-6 text-white font-semibold"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
-            </svg> */}
             <img
-              src="https://w7.pngwing.com/pngs/326/85/png-transparent-google-logo-google-text-trademark-logo-thumbnail.png"
-              className="w-6 h-6"
+              src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-google-logo-vector-png-image_12256710.png"
+              className="w-7 h-7"
               alt="Google_Img"
             />
-          </button>
-          <button
+          </button> */}
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Continue with Google"
+            onSuccess={handleSocialLoginSuccess}
+            onFailure={handleSocialLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            render={(renderProps) => (
+              <button
+                type="button"
+                className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Continue with Google
+                <img
+                  src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-google-logo-vector-png-image_12256710.png"
+                  className="w-7 h-7"
+                  alt="Google_Img"
+                />
+              </button>
+            )}
+          />
+          <GoogleLogin
+            clientId={clientId}
+            buttonText=" Continue with GitHub"
+            onSuccess={handleSocialLoginSuccess}
+            onFailure={handleSocialLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            render={(renderProps) => (
+              <button
+                type="button"
+                className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Continue with GitHub
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                  className="w-6 h-6"
+                  alt="Githum_Img"
+                />
+              </button>
+            )}
+          />
+          {/* <button
             type="button"
             className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
             onClick={handleSocialLogin}
           >
             Continue with GitHub
-            {/* <svg
-              className="ml-2 w-6 h-6 text-white font-semibold"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 12h4m-2 2v-4M4 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
-            </svg> */}
             <img
               src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
               className="w-6 h-6"
               alt="Githum_Img"
             />
-          </button>
+          </button> */}
           <p className="text-center mt-4">
             Don't have an account?
             <Link to={"/signup"} className="font-bold underline text-red-500">

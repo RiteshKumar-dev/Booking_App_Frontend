@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
-// import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 const clientId =
   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const SignupCom = () => {
@@ -195,8 +195,6 @@ const SignupCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          <script src="https://cdn.jsdelivr.net/npm/react-google-login"></script>
-
           <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 import { toast } from "react-toastify";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 const clientId =
   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const LoginCom = () => {
@@ -219,6 +219,8 @@ const LoginCom = () => {
               alt="Google_Img"
             />
           </button> */}
+          <script src="https://cdn.jsdelivr.net/npm/react-google-login"></script>
+
           <GoogleLogin
             clientId={clientId}
             buttonText="Continue with Google"

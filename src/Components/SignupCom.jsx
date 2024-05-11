@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
-// import { GoogleLogin } from "react-google-login";
-// const clientId =
-//   "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
+import { GoogleLogin } from "@react-oauth/google";
+
 const SignupCom = () => {
   const [user, setUser] = useState({
     username: "",
@@ -56,18 +55,28 @@ const SignupCom = () => {
         }, 500);
         navigate("/");
       } else {
-        console.log(response);
-        const errorData = await response.json();
-        toast.error(errorData.message);
+        const responseData = await response.json();
+        if (responseData.errors) {
+          // Display validation errors to the user
+          for (const field in responseData.errors) {
+            console.log(`${field}: ${responseData.errors[field]}`);
+            toast.error(`${field}: ${responseData.errors[field]}`);
+          }
+        } else {
+          // Handle other types of errors
+          console.error("Registration failed:", responseData.message);
+          toast.error(responseData.message);
+        }
       }
     } catch (error) {
       console.log("Registration error", error);
       toast.error("Registration failed...");
     }
   };
+
   const handleSocialLoginSuccess = async (response) => {
     try {
-      const tokenId = response.tokenId;
+      const tokenId = response.credential;
       const responseBackend = await fetch(`${API}/api/auth/google`, {
         method: "POST",
         headers: {
@@ -195,8 +204,8 @@ const SignupCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          {/* <GoogleLogin
-            clientId={clientId}
+          <GoogleLogin
+            clientId={import.meta.env.VITE_clientId}
             buttonText="Continue with Google"
             onSuccess={handleSocialLoginSuccess}
             onFailure={handleSocialLoginFailure}
@@ -216,7 +225,7 @@ const SignupCom = () => {
                 />
               </button>
             )}
-          /> */}
+          />
           <p className="text-center mt-4">
             Already have an account?
             <Link to={"/login"} className="font-bold underline text-red-500">

@@ -4,9 +4,6 @@ import { useAuth } from "../Context/authContext";
 import { toast } from "react-toastify";
 import { GoogleLogin } from "@react-oauth/google";
 
-// import { GoogleLogin } from "react-google-login";
-const clientId =
-  "1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com";
 const LoginCom = () => {
   const [redirect, setRedirect] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -24,37 +21,6 @@ const LoginCom = () => {
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log(credentials);
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/auth/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(credentials),
-  //     });
-  //     console.log("Login form", response);
-  //     if (response.ok) {
-  //       const userData = await response.json(); // Extract JSON data from the response
-  //       console.log("Response from database...", userData);
-  //       toast.success("Logged in successfully...");
-  //       storeTokenInLS(userData.token);
-  //       storeUserDataInLS(userData);
-  //       setRedirect(true);
-  //       setCredentials({
-  //         email: "",
-  //         password: "",
-  //       });
-  //     } else {
-  //       toast.error("Logged in failed!...");
-  //       console.log("Invalid credentials");
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(credentials);
@@ -71,13 +37,10 @@ const LoginCom = () => {
         },
         body: JSON.stringify(credentials),
       });
-      console.log("Login form", response);
       if (response.ok) {
-        const userData = await response.json(); // Extract JSON data from the response
-        console.log("Response from database...", userData);
+        const userData = await response.json();
         toast.success("Logged in successfully...");
         storeTokenInLS(userData.token);
-        // Store only the necessary user data in localStorage
         const { _id, username, email, isAdmin, phone } = userData.userData;
         storeUserDataInLS(
           JSON.stringify({ _id, username, email, isAdmin, phone })
@@ -91,7 +54,8 @@ const LoginCom = () => {
           window.location.reload();
         }, 500);
       } else {
-        toast.error("Logged in failed!...");
+        const errorData = await response.json();
+        toast.error(errorData.message);
         console.log("Invalid credentials");
       }
     } catch (error) {
@@ -102,7 +66,6 @@ const LoginCom = () => {
     toast.warning("Currently not working...");
   };
   const handleSocialLoginSuccess = async (response) => {
-    console.log(response);
     try {
       const tokenId = response.credential;
       const responseBackend = await fetch(`${API}/api/auth/google`, {
@@ -115,8 +78,6 @@ const LoginCom = () => {
 
       if (responseBackend.ok) {
         const userData = await responseBackend.json();
-        console.log("Login form se :", userData.userData);
-        console.log("Login form se :", userData.token);
         toast.success("Logged in successfully...");
         storeTokenInLS(userData.token);
         const { _id, username, email, isAdmin, sub, profilePic } =
@@ -210,20 +171,9 @@ const LoginCom = () => {
             <div className="mx-3 text-gray-800">or</div>
             <div className="border-b border-gray-400 w-1/4"></div>
           </div>
-          {/* <button
-            type="button"
-            className="w-full bg-white  hover:bg-gray-300  text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
-            onClick={handleSocialLogin}
-          >
-            Continue with Google
-            <img
-              src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-google-logo-vector-png-image_12256710.png"
-              className="w-7 h-7"
-              alt="Google_Img"
-            />
-          </button> */}
+
           <GoogleLogin
-            clientId={clientId}
+            clientId={import.meta.env.VITE_clientId}
             buttonText="Continue with Google"
             onSuccess={handleSocialLoginSuccess}
             onFailure={handleSocialLoginFailure}
@@ -244,29 +194,7 @@ const LoginCom = () => {
               </button>
             )}
           />
-          {/* <GoogleLogin
-            clientId={clientId}
-            buttonText=" Continue with GitHub"
-            onSuccess={handleSocialLoginSuccess}
-            onFailure={handleSocialLoginFailure}
-            cookiePolicy={"single_host_origin"}
-            render={(renderProps) => (
-              <button
-                type="button"
-                className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                Continue with GitHub
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                  className="w-6 h-6"
-                  alt="Githum_Img"
-                />
-              </button>
-            )}
-          />{" "}
-           */}
+
           <button
             type="button"
             className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded mt-2 flex justify-center gap-2 border border-gray-500"

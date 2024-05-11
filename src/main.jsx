@@ -8,12 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <GoogleOAuthProvider clientId="1065221343853-uc79uql8hsn3bi25duumj2dnftbu1pam.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_clientId}>
     <AuthProvider>
       <React.StrictMode>
         <App />
         <ToastContainer
-          position="top-center"
+          position="top-right"
           autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}

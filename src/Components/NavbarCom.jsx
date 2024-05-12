@@ -97,7 +97,7 @@ const NavbarPage = () => {
             /> */}
           </Link>
           <div className="relative">
-            <div className="hidden md:flex border gap-2 border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500">
+            <div className="hidden lg:flex border gap-2 border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500">
               <div className="font-semibold">Any Where</div>
               <div className="border-l border-gray-300"></div>
               <div>Any Week</div>
@@ -245,6 +245,25 @@ const NavbarPage = () => {
             </button>
             {isOpen && user && (
               <div className="absolute right-3 mt-2 w-48 bg-white shadow-md rounded-md overflow-hidden z-10">
+                <div className="flex justify-end mt-2">
+                  <button onClick={() => setIsOpen(false)} className="">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-10 h-10"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <hr className="mt-1 border-t-2 border-gray-400" />
                 <div className="px-4 py-2">
                   <Link
                     className={linkClasses("profile")}

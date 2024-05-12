@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import PlaceOptionsCom from "./PlaceOptionsCom";
 import ScrollableImageContainer from "./ScrollableImageContainerCom";
 import { toast } from "react-toastify";
@@ -50,10 +50,9 @@ const IndexCom = ({ price }) => {
   const [likes, setLikes] = useState({});
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isGSTOn, setIsGSTOn] = useState(false); // State to track GST application
-  const { API } = useAuth();
+  const { API, user } = useAuth();
 
   useEffect(() => {
-    // fetch(`${API}/api/places`)
     fetch(`${API}/api/places`)
       .then((response) => response.json())
       .then((data) => {
@@ -96,18 +95,48 @@ const IndexCom = ({ price }) => {
       return { ...prevIndices, [placeId]: prevIndex };
     });
   };
-  const handleLikeClick = (placeId) => {
-    toast.success("Guest favourite...");
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [placeId]: !prevLikes[placeId],
-    }));
+  const handleLikeClick = async (placeId) => {
+    try {
+      const response = await fetch(`${API}/api/places/${placeId}/like`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ like: likes[placeId] }), // Sending the current like status
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data); // Check the response from the server
+      // Update the like status in the component state
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [placeId]: data.newLikeStatus, // Use the new like status from the server
+      }));
+      if (data.newLikeStatus) {
+        toast.success("Add to favourite...");
+      } else {
+        toast.warning("Remove from favourite...");
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    } catch (error) {
+      console.error("Error updating like status:", error);
+      toast.error("Failed to update like status.");
+    }
   };
-
   const handleToggleGST = () => {
     setIsGSTOn((prevIsGSTOn) => !prevIsGSTOn);
   };
 
+  // if (user && places) {
+  //   filteredPlaces = places.filter((place) =>
+  //     place.owner
+  //   );
+  // }
   return (
     <>
       <PlaceOptionsCom isGSTOn={isGSTOn} handleToggleGST={handleToggleGST} />
@@ -209,7 +238,8 @@ const IndexCom = ({ price }) => {
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     className={`w-5 h-5 md:w-7 md:h-7 text-${
-                      likes[place._id] ? "red-500" : "white"
+                      // user._id === place.owner && place.likeStatus
+                      place.likeStatus ? "red-600" : "white"
                     }`}
                   >
                     <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />

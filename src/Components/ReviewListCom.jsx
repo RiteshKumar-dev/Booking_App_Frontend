@@ -50,7 +50,7 @@ const ReviewListCom = ({ reviews, onDelete }) => {
           >
             <button
               onClick={() => handleDelete(review._id)}
-              className="absolute top-2 right-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs"
+              className="absolute top-2 right-2  text-black py-1 px-2 rounded-full text-xs"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

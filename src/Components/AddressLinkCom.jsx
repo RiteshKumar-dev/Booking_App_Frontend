@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 
 const AddressLinkCom = ({ children, className = null }) => {
   const handleShareBtn = () => {
-    toast.success("Share successfull 👋...");
+    toast.success("Share successfull...");
   };
   const handleSaveBtn = () => {
-    toast.success("Saved in gallery 📂...");
+    toast.success("Saved in gallery...");
   };
   if (!className) {
-    className = "flex my-3 block ";
+    className = "flex my-3 block";
   }
   className += "flex gap-1 font-semibold underline";
   return (
@@ -39,7 +39,7 @@ const AddressLinkCom = ({ children, className = null }) => {
           />
         </svg>
 
-        {children}
+        <p className="flex truncate">{children}</p>
       </a>
       <div className="lg:ml-auto flex">
         <button

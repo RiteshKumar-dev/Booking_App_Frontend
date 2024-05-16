@@ -38,7 +38,7 @@ const BookingsPage = () => {
     <div>
       <AccountCom />
       <div>
-        {bookings?.length > 0 &&
+        {bookings?.length > 0 ? (
           bookings.map((booking, index) => {
             // Check if the place associated with the booking exists
             if (!booking.place) {
@@ -99,7 +99,12 @@ const BookingsPage = () => {
                 </div>
               </Link>
             );
-          })}
+          })
+        ) : (
+          <div className="text-gray-500 text-center text-4xl font-semibold underline decoration-gray-300">
+            You have no bookings...
+          </div>
+        )}
       </div>
     </div>
   );

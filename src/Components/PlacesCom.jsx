@@ -44,7 +44,6 @@ const PlacesCom = () => {
         toast.error("Failed to delete listing. Please try again.");
       });
   };
-
   return (
     <div>
       <AccountCom />
@@ -69,36 +68,46 @@ const PlacesCom = () => {
         </Link>
       </div>
       <div className="mb-4 px-6 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {places.length > 0 &&
-          places.map((place) => (
-            <div
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 relative"
-              key={place._id}
-            >
-              <button
-                className="absolute top-2 right-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs z-10"
-                onClick={() => handleDelete(place._id)}
+        {places.length > 0
+          ? places.map((place) => (
+              <div
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 relative"
+                key={place._id}
               >
-                Delete
-              </button>
-              <Link to={"/account/places/" + place._id} className="block">
-                <div className="relative">
-                  <PlacesImgCom place={place} />
-                  <div className="absolute bottom-2 left-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs">
-                    {place.maxGuests} Guests
+                <button
+                  className="absolute top-2 right-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs z-10"
+                  onClick={() => handleDelete(place._id)}
+                >
+                  Delete
+                </button>
+                <Link to={"/account/places/" + place._id} className="block">
+                  <div className="relative">
+                    <PlacesImgCom place={place} />
+                    <div className="absolute bottom-2 left-2 bg-red-500 text-white py-1 px-2 rounded-full text-xs">
+                      {place.maxGuests} Guests
+                    </div>
                   </div>
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold mb-2">{place.title}</h2>
-                  <p className="text-sm text-gray-600 mb-2">{place.address}</p>
-                  <p className="text-sm text-gray-600 line-clamp-3">
-                    {place.description}
-                  </p>
-                </div>
-              </Link>
-            </div>
-          ))}
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold mb-2">
+                      {place.title}
+                    </h2>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {place.address}
+                    </p>
+                    <p className="text-sm text-gray-600 line-clamp-3">
+                      {place.description}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            ))
+          : null}
       </div>
+      {places.length === 0 && (
+        <div className="text-gray-500 text-center text-4xl font-semibold underline decoration-gray-300">
+          You have no listings...
+        </div>
+      )}
     </div>
   );
 };

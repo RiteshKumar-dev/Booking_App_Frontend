@@ -9,6 +9,8 @@ import AdminMainIdx from "./AdminMainIdx";
 import TestimonialSliderCom from "./TestimonialSliderCom";
 import LoadingCom from "./LoadingCom";
 import GoogleMapCom from "./GoogleMapCom";
+import "./Animate-flash.css";
+import BookingPopupCom from "./BookingPopupCom";
 
 const SuspenseImage = ({ src, alt, ...rest }) => {
   const [image, setImage] = useState(null);
@@ -140,7 +142,7 @@ const IndexCom = ({ price }) => {
   return (
     <>
       <PlaceOptionsCom isGSTOn={isGSTOn} handleToggleGST={handleToggleGST} />
-      <div className="px-6 lg:mt-48 md:mt-10 mt-5 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="lg:px-10 md:px-8 sm:px-5 lg:mt-48 md:mt-10 mt-5 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {places.map((place) => (
           <Link to={"/places/" + place._id} key={place._id}>
             <div className="bg-gray-500 mb-3 rounded-2xl relative">
@@ -237,14 +239,24 @@ const IndexCom = ({ price }) => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
+                    stroke="white"
+                    strokeWidth="2"
                     className={`w-5 h-5 md:w-7 md:h-7 text-${
-                      // user._id === place.owner && place.likeStatus
-                      place.likeStatus ? "red-600" : "white"
+                      place.likeStatus ? "red-600" : "transparent"
                     }`}
                   >
                     <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                   </svg>
                 </button>
+                <div
+                  className={`${
+                    place.likeStatus
+                      ? "absolute left-0 top-0 bg-white p-2 rounded-full text-sm font-bold mt-2 ml-2 shadow-md shadow-gray-500 sm:hidden hidden lg:block md:block"
+                      : "hidden"
+                  }`}
+                >
+                  Guest favourite
+                </div>
               </Suspense>
             </div>
             <h2 className="font-bold ">{place.address}</h2>
@@ -261,16 +273,12 @@ const IndexCom = ({ price }) => {
         ))}
       </div>
       <hr className="mt-5 border-t-2 border-gray-300 mb-4" />
-      {/* <ScrollableImageContainer
-        images={places.map((place) => ({
-          url: place.photos[0],
-          placeId: place._id,
-        }))}
-      /> */}
+      <h2 className="font-bold text-3xl text-red-500 mt-1 px-4 flex justify-center underline ">
+        User's Experience...
+      </h2>
       <TestimonialSliderCom />
       <hr className="mt-5 border-t-2 border-gray-300 mb-4" />
       <AdminMainIdx />
-      {/* <MapCom place={places.map((place) => place.address)} /> */}
       <ScrollableImageContainer
         images={places.map((place) => ({
           url: place.photos[1],
@@ -279,6 +287,7 @@ const IndexCom = ({ price }) => {
       />
       <hr className="mt-5 border-t-2 border-gray-300 mb-4" />
       <GoogleMapCom />
+      <BookingPopupCom />
     </>
   );
 };

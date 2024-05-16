@@ -48,7 +48,7 @@ function ProfileCom() {
                   <img
                     className="object-cover w-full h-full"
                     src={
-                      user.profilePic ||
+                      user?.profilePic ||
                       "https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369991.png"
                     }
                     alt="userImage"

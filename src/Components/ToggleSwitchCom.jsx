@@ -4,7 +4,7 @@ const ToggleSwitchCom = ({ isOn, handleToggle }) => {
   return (
     <>
       <div className="flex items-center justify-center gap-3 font-semibold border border-gray-300 rounded-3xl lg:py-1 lg:px-2 shadow-md shadow-gray-200 lg:w-2/5 mt-3 py-2 px-4  md:mb-2 mb-2">
-        <span className="ms-3 sm:text-sm md:text-sm lg:text-lg font-medium text-black">
+        <span className="ms-3 sm:text-sm md:text-sm lg:text-lg font-medium text-black truncate">
           Display total before taxes...
         </span>
         <div className="">

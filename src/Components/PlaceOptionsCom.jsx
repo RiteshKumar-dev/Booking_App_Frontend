@@ -21,7 +21,7 @@ const PlaceOptionsCom = ({ isGSTOn, handleToggleGST }) => {
           <LoadingCom />
         </div>
       )}
-      <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:mt-5 lg:z-10 flex justify-around items-center lg:px-4 lg:py-2 md:px-4 md:py-2 bg-white lg:shadow-sm">
+      <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:mt-5 lg:z-10 flex justify-around items-center lg:px-16 lg:py-2 md:px-2 md:py-2 bg-white lg:shadow-sm">
         <div className="lg:flex md:flex gap-5 overflow-hidden lg:mt-16">
           <div
             className="overflow-x-auto flex flex-nowrap justify-between cursor-pointer py-1 px-2  lg:w-4/5"

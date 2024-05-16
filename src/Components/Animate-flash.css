@@ -1,0 +1,17 @@
+@keyframes flash {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.6;
+  }
+}
+
+.animate-flash {
+  animation: flash 2s infinite;
+}

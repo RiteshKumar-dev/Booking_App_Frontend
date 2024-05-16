@@ -60,7 +60,7 @@ const NavbarPage = () => {
   return (
     <>
       <div>
-        <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:z-50 flex justify-around items-center px-4 py-2 md:px-8 md:py-4 bg-white lg:shadow-md mb-5 gap-2">
+        <header className="lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:z-50 flex justify-around items-center px-4 py-2 md:px-8 md:py-4 lg:px-10 lg:py-4 bg-white lg:shadow-md mb-5 gap-2">
           <Link
             to={"/"}
             className="flex items-center text-red-500 text-semibold"
@@ -333,6 +333,33 @@ const NavbarPage = () => {
                       My Accommodations
                     </div>
                   </Link>
+                  <Link
+                    className={linkClasses("places")}
+                    to={"/account/userFav"}
+                    onClick={closeDropdown}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+                      />
+                    </svg>
+
+                    <div
+                      className="truncate overflow-hidden"
+                      style={{ maxHeight: "2.5rem" }}
+                    >
+                      Favourite
+                    </div>
+                  </Link>
                 </div>
               </div>
             )}
@@ -380,7 +407,7 @@ const NavbarPage = () => {
           </div> */}
           {!!user && (
             <div className="hidden md:flex lg:flex gap-2 font-semibold border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500 cursor-pointer">
-              <Link to={"/account/places/new"}>Airbnb your home...</Link>
+              <Link to={"/account/userFav"}>Airbnb your home...</Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -405,7 +432,7 @@ const NavbarPage = () => {
           )}
         </header>
       </div>
-      {/* <hr className="mt-2 border-t-2 border-gray-300" /> */}
+      <hr className="mt-2 border-t-2 border-gray-200" />
     </>
   );
 };

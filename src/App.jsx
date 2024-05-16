@@ -19,6 +19,7 @@ import AdminUserUpdate from "./Components/AdminComponents/AdminUserUpdate";
 import ContactCom from "./Components/ContactCom";
 import AdminContacts from "./Components/AdminComponents/AdminContacts";
 import AdminServices from "./Components/AdminComponents/AdminServices";
+import FavPlace from "./Components/FavPlace";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/login" element={<LoginCom />} />
           <Route path="/signup" element={<SignupCom />} />
           <Route path="/account" element={<ProfileCom />} />
+          <Route path="/account/userFav" element={<FavPlace />} />
           <Route path="/account/places" element={<PlacesCom />} />
           <Route path="/account/places/new" element={<PlacesFormCom />} />
           <Route path="/account/places/:id" element={<PlacesFormCom />} />

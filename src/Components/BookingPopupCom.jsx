@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useAuth } from "../Context/authContext";
+import { Link } from "react-router-dom";
 
 const BookingPopupCom = () => {
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
@@ -14,8 +17,11 @@ const BookingPopupCom = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
       <div className="bg-white p-8 rounded-lg max-w-md w-full mx-4">
-        <div className="flex justify-end ">
-          <button className="text-black" onClick={handleClose}>
+        <div className="flex justify-end">
+          <button
+            className="text-black transform hover:scale-110 transition-transform"
+            onClick={handleClose}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -32,6 +38,14 @@ const BookingPopupCom = () => {
             </svg>
           </button>
         </div>
+        {user ? (
+          <p className="text-center font-semibold">
+            <span className="text-1xl font-bold text-red-500">Hey, </span>
+            {user.username}
+          </p>
+        ) : (
+          ""
+        )}
         <h2 className="text-2xl text-center font-bold mb-4">
           Special Booking Offers
         </h2>
@@ -61,6 +75,27 @@ const BookingPopupCom = () => {
           <button className="rounded-full bg-red-400 hover:bg-red-500 px-3 py-3 text-1xl font-semibold">
             Learn more
           </button>
+          <p className="text-1xl text-blue-500">Get instant discounts...</p>
+          <Link
+            to={"/signup"}
+            className="text-red-600 flex items-center justify-center"
+          >
+            Sign into your account! Click me
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="black"
+              className="w-6 h-6 ml-1"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </div>

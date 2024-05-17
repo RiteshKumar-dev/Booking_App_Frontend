@@ -70,31 +70,7 @@ const NavbarPage = () => {
               alt="Nav_Logo"
               className="h-12 cover object-fit"
             />
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-12 h-12 -rotate-90"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-              />
-            </svg> */}
             <span className="font-bold text-3xl hidden lg:block">Let's_Go</span>
-            {/* <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"
-              alt="Airbnb Logo"
-              className="h-11 hidden lg:block"
-            />
-            <img
-              src="https://seeklogo.com/images/A/airbnb-logo-1D03C48906-seeklogo.com.png"
-              alt="Airbnb Logo"
-              className="h-11 block lg:hidden"
-            /> */}
           </Link>
           <div className="relative">
             <div className="hidden lg:flex border gap-2 border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500">

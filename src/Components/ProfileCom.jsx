@@ -187,7 +187,7 @@ function ProfileCom() {
             Check if you are an admin...?
           </h2>
           <Link
-            className="mt-4 bg-red-500 hover:bg-red-600 text-white  py-2 px-4 rounded-md block w-full gap-3 justify-center flex"
+            className="mt-4 bg-blue-400 hover:bg-blue-600 text-white  py-2 px-4 rounded-md block w-full gap-3 justify-center flex"
             to={user.isAdmin ? "/admin" : ""}
             onClick={() => (user.isAdmin ? "" : checkAdminIs())}
           >

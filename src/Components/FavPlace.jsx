@@ -275,7 +275,7 @@ const FavPlace = ({ price }) => {
       <hr className="mt-5 border-t-2 border-gray-300 mb-4" />
       <div className="lg:mt-5 lg:pt- px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
-          className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
+          className="w-full bg-green-100 hover:bg-green-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
           to={user.isAdmin ? "/admin" : ""}
           onClick={() => (user.isAdmin ? "" : checkAdminIs())}
         >
@@ -285,7 +285,7 @@ const FavPlace = ({ price }) => {
         <Link
           to={user.isAdmin ? "/admin/users" : ""}
           onClick={() => (user.isAdmin ? "" : checkAdminIs())}
-          className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
+          className="w-full bg-yellow-100 hover:bg-yellow-200 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
         >
           <FaUsers className="mr-2" />
           Experiences
@@ -293,7 +293,7 @@ const FavPlace = ({ price }) => {
         <Link
           to={user.isAdmin ? "/admin/contacts" : ""}
           onClick={() => (user.isAdmin ? "" : checkAdminIs())}
-          className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
+          className="w-full bg-blue-100 hover:bg-blue-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
         >
           <FaAddressBook className="mr-2" />
           Online Experiences
@@ -301,7 +301,7 @@ const FavPlace = ({ price }) => {
         <Link
           to={user.isAdmin ? "/admin/services" : ""}
           onClick={() => (user.isAdmin ? "" : checkAdminIs())}
-          className="w-full bg-white hover:bg-gray-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
+          className="w-full bg-purple-100 hover:bg-purple-300 text-black font-bold py-2 rounded-2xl mt-2 flex items-center justify-center gap-1 border border-red-500"
         >
           <FaCogs className="mr-2" />
           Services

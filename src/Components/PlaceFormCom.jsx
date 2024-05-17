@@ -18,6 +18,7 @@ const PlaceFormCom = () => {
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(1000);
+  const [category, setCategory] = useState("Trending");
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const PlaceFormCom = () => {
         setMaxGuests(data.maxGuests);
         setCheckOut(data.checkOut);
         setPrice(data.price);
+        setCategory(data.category);
       })
       .catch((error) => console.error("Error fetching place:", error));
   }, [id, token]);
@@ -59,6 +61,7 @@ const PlaceFormCom = () => {
       checkOut,
       maxGuests,
       price,
+      category,
     };
     const requestOptions = {
       method: id ? "PUT" : "POST",
@@ -168,6 +171,25 @@ const PlaceFormCom = () => {
           onChange={(ev) => setExtraInfo(ev.target.value)}
           required
         ></textarea>
+        {preInput("Category", "Select a category for your place.")}
+        <select
+          className="w-full mt-2 border rounded-2xl py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
+          value={category}
+          onChange={(ev) => setCategory(ev.target.value)}
+          required
+        >
+          <option value="Trending">Trending</option>
+          <option value="Design">Design</option>
+          <option value="Camping">Camping</option>
+          <option value="Farms">Farms</option>
+          <option value="Beach">Beach</option>
+          <option value="OMG!">OMG!</option>
+          <option value="Skiing">Skiing</option>
+          <option value="Arctic">Arctic</option>
+          <option value="Raids">Raids</option>
+          <option value="Barns">Barns</option>
+          <option value="Dammusi">Dammusi</option>
+        </select>
         {preInput(
           "Check In and Out Times",
           "Add check In & Out time, remenber to have same time window for cleaning the room between guests."

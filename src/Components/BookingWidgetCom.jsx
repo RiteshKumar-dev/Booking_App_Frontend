@@ -32,7 +32,9 @@ const BookingWidgetCom = ({ place }) => {
   useEffect(() => {
     if (user) {
       setName(user.username);
-      setPhone(user.phone);
+      if (user.phone) {
+        setPhone(user.phone);
+      }
       setIsBookingAllowed(true);
     } else {
       setIsBookingAllowed(false);

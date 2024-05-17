@@ -54,24 +54,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // const getServices = async () => {
-  //   try {
-  //     const response = await fetch(`${API}/api/data/service`, {
-  //       method: "GET",
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setServices(data);
-  //     }
-  //   } catch (error) {
-  //     console.log("Error fetching services", error);
-  //   }
-  // };
-
   useEffect(() => {
     userAuthentication();
-    // getServices();
   }, []);
 
   return (

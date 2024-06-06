@@ -23,10 +23,12 @@ function ProfileCom() {
 
   // console.log(user);
   const handleLogout = () => {
-    toast.success("Logged out successfully!...");
-    LogoutUser();
-    setRedirect("/");
-    setUser("");
+    if (window.confirm("Confirm? You want to logout from your account...")) {
+      toast.success("Logged out successfully!...");
+      LogoutUser();
+      setRedirect("/");
+      setUser("");
+    }
   };
 
   const checkAdminIs = () => {

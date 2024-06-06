@@ -33,6 +33,10 @@ const BookingsPage = () => {
       })
       .catch((error) => console.error("Error deleting booking:", error));
   };
+  const handleStripeStatus = (ev) => {
+    ev.preventDefault();
+    ev.stopPropogation();
+  };
 
   return (
     <div>
@@ -56,6 +60,7 @@ const BookingsPage = () => {
                       <PlaceImgCom
                         place={booking.place}
                         onDelete={() => handleDelete(booking._id)}
+                        onStatus={() => handleStripeStatus}
                       />
                     </div>
                     <div className="col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-3 p-4">

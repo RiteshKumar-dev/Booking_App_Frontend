@@ -71,11 +71,16 @@ const BookingPopupCom = () => {
             <p>These offers are valid until the end of the month.</p>
           </div>
         </div>
-        <div className="mt-4 text-center">
-          <button className="rounded-full bg-red-400 hover:bg-red-500 px-3 py-3 text-1xl font-semibold">
-            Learn more
-          </button>
-          <p className="text-1xl text-blue-500">Get instant discounts...</p>
+        <div className="mt-4 text-center mb-2">
+          <Link
+            to={"/policy"}
+            className="rounded-full bg-red-400 hover:bg-red-500 px-3 py-2 text-1xl font-semibold"
+          >
+            Learn more...
+          </Link>
+          <p className="mt-1 text-1xl text-blue-500">
+            Get instant discounts...
+          </p>
           <Link
             to={"/signup"}
             className="text-red-600 flex items-center justify-center"

@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [readyData, setReadyData] = useState(false);
   const [services, setServices] = useState([]);
   const API = import.meta.env.VITE_APP_API_URL;
+  const Stripe_Publishable_Key = import.meta.env
+    .VITE_APP_Stripe_Publishable_Key;
   const authorizationToken = `Bearer ${token}`;
 
   const storeTokenInLS = (serverToken) => {
@@ -70,6 +72,7 @@ export const AuthProvider = ({ children }) => {
         authorizationToken,
         loading,
         API,
+        Stripe_Publishable_Key,
         setUser,
         readyData,
         setReadyData,

@@ -1,7 +1,13 @@
 import React from "react";
 import { useAuth } from "../Context/authContext";
 
-const PlaceImgCom = ({ place, idx = 0, className = null, onDelete }) => {
+const PlaceImgCom = ({
+  place,
+  idx = 0,
+  className = null,
+  onDelete,
+  onStatus,
+}) => {
   const { API } = useAuth();
   if (!place.photos?.length) {
     return "";
@@ -12,6 +18,10 @@ const PlaceImgCom = ({ place, idx = 0, className = null, onDelete }) => {
   }
   const handleDelete = () => {
     onDelete(place._id);
+  };
+
+  const handleStripeStatus = () => {
+    onStatus(place._id);
   };
 
   return (
@@ -31,6 +41,12 @@ const PlaceImgCom = ({ place, idx = 0, className = null, onDelete }) => {
       >
         Delete
       </button>
+      {/* <button
+        onClick={handleStripeStatus}
+        className="absolute top-2 left-2 bg-green-500 text-white py-1 px-2 rounded-full text-xs"
+      >
+        Status...
+      </button> */}
     </div>
   );
 };

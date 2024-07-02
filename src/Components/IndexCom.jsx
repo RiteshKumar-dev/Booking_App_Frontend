@@ -155,7 +155,7 @@ const IndexCom = ({ price }) => {
         {places
           .filter((place) => !category || place.category === category)
           .map((place) => (
-            <Link to={"/places/" + place._id} key={place._id}>
+            <Link to={`/places/${place._id}`} key={place._id}>
               <div className="bg-gray-500 mb-3 rounded-2xl relative">
                 <Suspense fallback={<div>Loading...</div>}>
                   {place.photos?.[currentPhotoIndices[place._id]] ? (
@@ -168,10 +168,12 @@ const IndexCom = ({ price }) => {
                             "cloudinary"
                           )
                             ? place.photos[currentPhotoIndices[place._id]]
-                            : `${API}/uploads/` +
-                              place.photos[currentPhotoIndices[place._id]]
+                            : `${API}/uploads/${
+                                place.photos[currentPhotoIndices[place._id]]
+                              }`
                         }
                         alt="Image"
+                        loading="lazy"
                       />
                       {!imageLoaded && (
                         <div className="bg-gray-300 rounded-2xl object-cover aspect-square transform hover:scale-105 transition-transform duration-200 ease-out"></div>

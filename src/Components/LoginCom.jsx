@@ -10,7 +10,10 @@ const LoginCom = () => {
     email: "",
     password: "",
   });
-  const { storeTokenInLS, API, storeUserDataInLS } = useAuth();
+  const { storeTokenInLS, API, storeUserDataInLS, userData } = useAuth();
+  if (userData) {
+    return <Navigate to={"/"} />;
+  }
   const URL = `${API}/api/auth/login`;
 
   const handleInputs = (e) => {
@@ -23,7 +26,7 @@ const LoginCom = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(credentials);
+    // console.log(credentials);
     // Check if email or password is empty
     if (!credentials.email || !credentials.password) {
       toast.warning("Please fill in all fields...");

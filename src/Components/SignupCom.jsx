@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/authContext";
 import { GoogleLogin } from "@react-oauth/google";
@@ -12,7 +12,10 @@ const SignupCom = () => {
     password: "",
   });
   const navigate = useNavigate();
-  const { storeTokenInLS, API, storeUserDataInLS } = useAuth();
+  const { storeTokenInLS, API, storeUserDataInLS, userData } = useAuth();
+  if (userData) {
+    return <Navigate to={"/"} />;
+  }
   const URL = `${API}/api/auth/signup`;
 
   const handleInputs = (e) => {
